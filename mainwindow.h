@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "dbutil.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -17,6 +18,7 @@ public:
 
 private:
 	Ui::MainWindow *ui;
+    dbutil *db;
 };
 
 #endif // MAINWINDOW_H
