@@ -22,13 +22,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+CONFIG += resources_big
 
 SOURCES += main.cpp\
-        dbutil.cpp \
-        mainwindow.cpp
+	dbutil.cpp \
+        mainwindow.cpp \
+    admin.cpp \
+    admin_login.cpp \
+    add_movie.cpp \
+    movie_list.cpp
 
 HEADERS  += mainwindow.h \
     Models.h \
-    dbutil.h
+    dbutil.h \
+    admin.h \
+    admin_login.h \
+    add_movie.h \
+    movie_list.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    admin.ui \
+    admin_login.ui \
+    add_movie.ui \
+    movie_list.ui
+
+RESOURCES += \
+    resourse.qrc

@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/Resourse">
+        <file>Resourse/Icon/back.png</file>
+        <file>Resourse/Img/Background_salon.jpg</file>
+        <file>Resourse/Img/Background_film.jpg</file>
+        <file>Resourse/Icon/Exit critical.png</file>
+        <file>Resourse/Icon/icons8-add-file-100.png</file>
+        <file>Resourse/Icon/icons8-create-100.png</file>
+        <file>Resourse/Icon/reload.png</file>
+        <file>Resourse/Icon/Save.png</file>
+        <file>Resourse/Icon/new-ticket.png</file>
+        <file>Resourse/Icon/user.png</file>
+        <file>Resourse/Img/Background dark movie.jpg</file>
+        <file>Resourse/Img/Background Light Movie.jpg</file>
+        <file>Resourse/Img/backdrop-wooden-table.jpg</file>
+        <file>Resourse/Icon/icons8-remove-100.png</file>
+        <file>Resourse/Icon/remove-image.png</file>
+    </qresource>
+</RCC>
