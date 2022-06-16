@@ -36,7 +36,7 @@ void movie_list::resizeEvent(QResizeEvent* evt)
 
 	QPalette palette;
 
-	palette.setBrush(QPalette::Background, bkgnd);
+    palette.setBrush(QPalette::Window, bkgnd);
 	this->setPalette(palette);
 }
 
