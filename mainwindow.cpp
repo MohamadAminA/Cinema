@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "register.h"
+#include "admin_login.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -34,5 +35,13 @@ void MainWindow::on_registerBtn_clicked()
     Register *reg = new Register(this, db);
     this->hide();
     reg->show();
+}
+
+
+void MainWindow::on_adminBtn_clicked()
+{
+    admin_login *admin = new admin_login(this);
+    this->hide();
+    admin->show();
 }
 

@@ -4,45 +4,45 @@
 admin_login::Admin_User Accounts[20];
 
 admin_login::admin_login(QWidget *parent) :
-	QMainWindow(parent),
+    QDialog(parent),
 	ui(new Ui::admin_login)
 {
 
 	ui->setupUi(this);
-	this->setWindowFlags(Qt::SubWindow);
+//	this->setWindowFlags(Qt::SubWindow);
 
-	QWidget::showMaximized();
-	QSize* size = new QSize(100,100);
-	ui->toolBar->setIconSize(*size);
+//	QWidget::showMaximized();
+//	QSize* size = new QSize(100,100);
+//	ui->toolBar->setIconSize(*size);
 
-	QFile file("./Admin Users.txt");
-	if (file.open(QFile::ReadOnly|QFile::Text))
-	{
-		QTextStream stream(&file);
-		QString Admin_txt = stream.readAll();
-		QStringList Admin_sec_txt = Admin_txt.split('|');
-		QStringList Admin_3th_txt;
-		QString Admin_single_user;
-		for (int i = 0; i < Admin_sec_txt.count()-1; i++) {
-			Admin_single_user = Admin_sec_txt[i];
-			Admin_3th_txt = Admin_single_user.split(':');
-			Accounts[i].UserName = Admin_3th_txt[0];
-			Accounts[i].Password = Admin_3th_txt[1];
-			Accounts[i].Name = Admin_3th_txt[2];
-		}
+//	QFile file("./Admin Users.txt");
+//	if (file.open(QFile::ReadOnly|QFile::Text))
+//	{
+//		QTextStream stream(&file);
+//		QString Admin_txt = stream.readAll();
+//		QStringList Admin_sec_txt = Admin_txt.split('|');
+//		QStringList Admin_3th_txt;
+//		QString Admin_single_user;
+//		for (int i = 0; i < Admin_sec_txt.count()-1; i++) {
+//			Admin_single_user = Admin_sec_txt[i];
+//			Admin_3th_txt = Admin_single_user.split(':');
+//			Accounts[i].UserName = Admin_3th_txt[0];
+//			Accounts[i].Password = Admin_3th_txt[1];
+//			Accounts[i].Name = Admin_3th_txt[2];
+//		}
 
 
-		file.close();
-	}
-	else{
-		QFile file("./Admin Users.txt");
-		if (file.open(QFile::WriteOnly|QFile::Text))
-		{
-			QTextStream stream(&file);
-			stream << "Admin" << ":" << "123456" << ":" << "Defult"<< "|"; // this writes first line with two columns
-			file.close();
-		}
-	}
+//		file.close();
+//	}
+//	else{
+//		QFile file("./Admin Users.txt");
+//		if (file.open(QFile::WriteOnly|QFile::Text))
+//		{
+//			QTextStream stream(&file);
+//			stream << "Admin" << ":" << "123456" << ":" << "Defult"<< "|"; // this writes first line with two columns
+//			file.close();
+//		}
+//	}
 	//Defult Admin Username : Admin | Password : 123456
 
 }

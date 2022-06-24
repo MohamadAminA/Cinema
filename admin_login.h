@@ -4,14 +4,16 @@
 #include <QMainWindow>
 #include "QFile"
 #include "QTextStream"
-#include "QMessageBox"
+#include <QMessageBox>
+#include <QDialog>
 #include "admin.h"
 #include "mainwindow.h"
+
 namespace Ui {
 class admin_login;
 }
 
-class admin_login : public QMainWindow
+class admin_login : public QDialog
 {
 	Q_OBJECT
 

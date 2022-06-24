@@ -23,6 +23,8 @@ private slots:
 
     void on_registerBtn_clicked();
 
+    void on_adminBtn_clicked();
+
 private:
 	Ui::MainWindow *ui;
     dbutil *db;
