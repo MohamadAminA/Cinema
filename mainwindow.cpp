@@ -22,7 +22,7 @@ void MainWindow::on_loginBtn_clicked()
     QString pass = ui->password->text();
     if (user.isEmpty() || pass.isEmpty()) {
         QMessageBox::warning(this, "login", "fields can not be empty.");
-        return;`
+		return;
     }
     User userobj{user, pass};
     bool res = db->ValidateUser(userobj);
@@ -37,15 +37,15 @@ void MainWindow::on_loginBtn_clicked()
 void MainWindow::on_registerBtn_clicked()
 {
     Register *reg = new Register(this, db);
+	reg->show();
     this->hide();
-    reg->show();
 }
 
 
 void MainWindow::on_adminBtn_clicked()
 {
-    admin_login *admin = new admin_login(this);
+	admin_login *admin = new admin_login(this,db);
+	admin->show();
     this->hide();
-    admin->show();
 }
 

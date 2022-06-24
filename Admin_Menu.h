@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "add_movie.h"
 #include "movie_list.h"
+
 namespace Ui {
 class Admin;
 }
@@ -27,10 +28,6 @@ private slots:
 	void on_pushButton_Addmovie_clicked();
 
 	void on_pushButton_MovieList_clicked();
-
-	void on_pushButton_Users_clicked();
-
-	void on_actionUsersList_triggered();
 
 	void on_actionMovieList_triggered();
 

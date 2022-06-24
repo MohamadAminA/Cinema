@@ -177,17 +177,17 @@ QList<Movie> *dbutil::GetMovies() {
     return list;
 }
 
-bool dbutil::ValidateAdmin(User admin) {
-    if (!admin.username.compare("admin") && !admin.password.compare("123456")) return true;
+bool dbutil::ValidateAdmin(admin Admin) {
+	if (!Admin.username.compare("admin") && !Admin.password.compare("123456")) return true;
     db.open();
     QSqlQuery q;
     q.prepare("SELECT * FROM admins WHERE username=?;");
-    q.addBindValue(admin.username);
+	q.addBindValue(Admin.username);
     q.exec();
     bool exists = q.next();
     if (exists) {
         QString pass = q.value(2).toString();
-        bool verify = !pass.compare(admin.password);
+		bool verify = !pass.compare(Admin.password);
         q.clear();
         db.close();
         return verify;
@@ -238,8 +238,3 @@ QList<User> *dbutil::GetUsers() {
     }
     return list;
 }
-
-
-
-
-

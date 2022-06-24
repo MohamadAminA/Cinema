@@ -27,27 +27,27 @@ CONFIG += resources_big
 SOURCES += main.cpp\
 	dbutil.cpp \
         mainwindow.cpp \
-    admin.cpp \
     admin_login.cpp \
     add_movie.cpp \
     movie_list.cpp \
-    register.cpp
+    register.cpp \
+    Admin_Menu.cpp
 
 HEADERS  += mainwindow.h \
     Models.h \
     dbutil.h \
-    admin.h \
     admin_login.h \
     add_movie.h \
     movie_list.h \
-    register.h
+    register.h \
+    Admin_Menu.h
 
 FORMS    += mainwindow.ui \
-    admin.ui \
     admin_login.ui \
     add_movie.ui \
     movie_list.ui \
-    register.ui
+    register.ui \
+    Admin_Menu.ui
 
 RESOURCES += \
     resourse.qrc

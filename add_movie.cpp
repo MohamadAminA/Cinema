@@ -13,7 +13,7 @@ add_movie::add_movie(QWidget *parent) :
 	ui->setupUi(this);
 
 	QWidget::showMaximized();
-	this->setWindowFlags(Qt::SubWindow);
+	this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QSize* size = new QSize(100,100);
 	ui->toolBar->setIconSize(*size);
 	QPixmap pix(":/Resourse/Resourse/Icon/icons8-add-file-100.png");
@@ -102,9 +102,10 @@ void add_movie::on_actionReset_triggered()
 
 void add_movie::on_actionBack_triggered()
 {
-	Admin* Admin_Form = new Admin();
-	Admin_Form->show();
-	this->close();
+
+	this->destroy();
+	((QWidget*)parent())->show();
+
 }
 
 void add_movie::on_actionExit_triggered()

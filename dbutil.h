@@ -18,10 +18,11 @@ public:
     void DeleteReserve(User, QString);
     bool AddMovie(Movie);
     QList<Movie> *GetMovies();
-    bool ValidateAdmin(User);
-    void CreateAdmin(User);
+	bool ValidateAdmin(admin);
+	bool CreateAdmin(User);
     bool RemoveMovie(QString);
     void UpdateMovie(Movie);
+	QList<User>* GetUsers();
 };
 
 #endif // DBUTIL_H

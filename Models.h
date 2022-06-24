@@ -29,4 +29,12 @@ public:
         moviecast{moviecast}, imdb{imdb} {  }
 };
 
+class admin {
+public:
+	int id;
+	QString username;
+	QString password;
+};
+
+
 #endif // MODELS_H

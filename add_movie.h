@@ -3,7 +3,7 @@
 #include "QMessageBox"
 #include <QMainWindow>
 #include "QString"
-#include "admin.h"
+#include "Admin_Menu.h"
 namespace Ui {
 class add_movie;
 }

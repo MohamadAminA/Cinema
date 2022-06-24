@@ -11,7 +11,8 @@ movie_list::movie_list(QWidget *parent) :
 	ui->setupUi(this);
 
 	QWidget::showMaximized();
-	this->setWindowFlags(Qt::SubWindow);
+
+	this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QSize* size = new QSize(100,100);
 	ui->toolBar->setIconSize(*size);
 
@@ -101,9 +102,10 @@ void movie_list::on_actionExit_triggered()
 
 void movie_list::on_actionBack_triggered()
 {
-	Admin* Admin_Form = new Admin();
-	Admin_Form->show();
-	this->hide();
+
+	this->destroy();
+	((QWidget*)parent())->show();
+
 }
 
 void movie_list::on_tableWidget_film_cellChanged(int row, int column)

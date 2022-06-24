@@ -1,6 +1,6 @@
 #ifndef MOVIE_LIST_H
 #define MOVIE_LIST_H
-#include <admin.h>
+#include <Admin_Menu.h>
 #include <QMainWindow>
 #include <QFile>
 #include <QTextStream>

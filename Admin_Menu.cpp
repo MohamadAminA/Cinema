@@ -1,4 +1,4 @@
-#include "admin.h"
+#include "Admin_Menu.h"
 #include "ui_admin.h"
 
 Admin::Admin(QWidget *parent) :
@@ -6,16 +6,15 @@ Admin::Admin(QWidget *parent) :
 	ui(new Ui::Admin)
 {
 	ui->setupUi(this);
-	QWidget::showMaximized();
-	this->setWindowFlags(Qt::SubWindow);
+
+	this->QWidget::showMaximized();
+	this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QSize* size = new QSize(100,100);
 	ui->toolBar->setIconSize(*size);
 	QPixmap pix(":/Resourse/Resourse/Icon/icons8-add-file-100.png");
 	ui->label_AddmoviePic->setPixmap(pix.scaled(200,200,Qt::KeepAspectRatio));
 	QPixmap pix2(":/Resourse/Resourse/Icon/icons8-create-100.png");
 	ui->label_MoviListPic->setPixmap(pix2.scaled(200,200,Qt::KeepAspectRatio));
-	QPixmap pix3(":/Resourse/Resourse/Icon/user.png");
-	ui->label_UserListPic->setPixmap(pix3.scaled(200,200,Qt::KeepAspectRatio));
 
 }
 
@@ -26,9 +25,9 @@ Admin::~Admin()
 
 void Admin::on_actionBack_triggered()
 {
-	admin_login* Admin_Login_Form = new admin_login(this);
-	Admin_Login_Form->show();
-	this->hide();
+
+	this->destroy();
+	((QWidget*)parent())->show();
 }
 
 //تنظیم بکگراند به صورت تغییر پذیر
@@ -51,29 +50,16 @@ void Admin::on_actionExit_triggered()
 
 void Admin::on_pushButton_Addmovie_clicked()
 {
-	add_movie* add_Movie = new add_movie();
+	add_movie* add_Movie = new add_movie(this);
 	add_Movie->show();
-	this->close();
+	this->hide();
 }
 
 void Admin::on_pushButton_MovieList_clicked()
 {
-	movie_list* Movie_List = new movie_list();
+	movie_list* Movie_List = new movie_list(this);
 	Movie_List->show();
-	this->close();
-}
-
-void Admin::on_pushButton_Users_clicked()
-{
-
-}
-
-
-
-
-void Admin::on_actionUsersList_triggered()
-{
-	Admin::on_pushButton_Users_clicked();
+	this->hide();
 }
 
 void Admin::on_actionMovieList_triggered()
