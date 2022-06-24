@@ -19,7 +19,9 @@ public:
     bool AddMovie(Movie);
     QList<Movie> *GetMovies();
     bool ValidateAdmin(User);
+    void CreateAdmin(User);
     bool RemoveMovie(QString);
+    void UpdateMovie(Movie);
 };
 
 #endif // DBUTIL_H

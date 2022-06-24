@@ -63,6 +63,25 @@ bool dbutil::ValidateUser(User user) {
     return exists;
 }
 
+bool dbutil::CreateAdmin(User user) {
+    db.open();
+    QSqlQuery q;
+    q.prepare("INSERT INTO admins (username, password) VALUES (?, ?);");
+    q.addBindValue(user.username);
+    q.addBindValue(user.password);
+    q.exec();
+    QSqlError err = q.lastError();
+    if (err.isValid()) {
+        q.clear();
+        db.close();
+        return false;
+    } else {
+        q.clear();
+        db.close();
+        return true;
+    }
+}
+
 bool dbutil::AddReserve(User user, QString moviename) {
     db.open();
     QSqlQuery q;
@@ -188,6 +207,39 @@ bool dbutil::RemoveMovie(QString moviename) {
     db.close();
     return true;
 }
+
+void dbutil::UpdateMovie(Movie mov) {
+    db.open();
+    QSqlQuery q;
+    q.prepare("UPDATE movies SET name=?, tickets=?, bookedTickets=?, time=?, genre=?, releaseDate=?, director=?, moviecast=?, imdb=? WHERE name=?;");
+    q.addBindValue(mov.name);
+    q.addBindValue(mov.tickets);
+    q.addBindValue(mov.bookedTickets);
+    q.addBindValue(mov.time);
+    q.addBindValue(mov.genre);
+    q.addBindValue(mov.releaseDate);
+    q.addBindValue(mov.director);
+    q.addBindValue(mov.moviecast);
+    q.addBindValue(mov.imdb);
+    q.addBindValue(mov.name);
+    q.exec();
+    q.clear();
+    db.close();
+}
+
+QList<User> *dbutil::GetUsers() {
+    db.open();
+    QSqlQuery q;
+    q.exec("SELECT * FROM users;");
+    QList<User> *list = new QList<User>();
+    while (q.next()) {
+        User user{q.value(1).toString(), q.value(2).toString()};
+        list->append(user);
+    }
+    return list;
+}
+
+
 
 
 
