@@ -26,9 +26,9 @@ Admin::~Admin()
 
 void Admin::on_actionBack_triggered()
 {
-	admin_login* Admin_Login_Form = new admin_login();
+	admin_login* Admin_Login_Form = new admin_login(this);
 	Admin_Login_Form->show();
-	this->close();
+	this->hide();
 }
 
 //تنظیم بکگراند به صورت تغییر پذیر

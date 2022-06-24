@@ -4,7 +4,7 @@
 admin_login::Admin_User Accounts[20];
 
 admin_login::admin_login(QWidget *parent) :
-    QDialog(parent),
+	QMainWindow(parent),
 	ui(new Ui::admin_login)
 {
 
@@ -119,7 +119,11 @@ void admin_login::on_checkBox_2_stateChanged()
 
 void admin_login::on_actionBack_triggered()
 {
-	MainWindow* mainwindow_Form = new MainWindow();
-	mainwindow_Form->show();
-	this->close();
+//	MainWindow* mainwindow_Form = new MainWindow();
+//	mainwindow_Form->show();
+//	this->close();
+
+	this->destroy();
+	((QWidget*)parent())->show();
+
 }

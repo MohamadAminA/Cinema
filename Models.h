@@ -5,7 +5,7 @@
 
 class User {
 public:
-    User(QString uname, QString pass) : username{uname}, password{pass} {}
+	User(QString uname, QString pass) : username{uname}, password{pass} {}
     int id;
     QString username;
     QString password;

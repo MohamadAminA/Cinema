@@ -13,7 +13,7 @@ namespace Ui {
 class admin_login;
 }
 
-class admin_login : public QDialog
+class admin_login : public QMainWindow
 {
 	Q_OBJECT
 
