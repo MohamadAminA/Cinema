@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "register.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
@@ -13,3 +14,25 @@ MainWindow::~MainWindow()
 {
 	delete ui;
 }
+
+void MainWindow::on_loginBtn_clicked()
+{
+    QString user = ui->username->text();
+    QString pass = ui->password->text();
+    User userobj{user, pass};
+    bool res = db->ValidateUser(userobj);
+    if (res) {
+        QMessageBox::information(this, "login", "successfull loginned");
+    } else {
+        QMessageBox::information(this, "login", "login failed");
+    }
+}
+
+
+void MainWindow::on_registerBtn_clicked()
+{
+    Register *reg = new Register(this, db);
+    this->hide();
+    reg->show();
+}
+

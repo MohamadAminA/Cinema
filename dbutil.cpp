@@ -16,6 +16,8 @@ dbutil::dbutil()
         q.clear();
         q.exec("CREATE TABLE reserves (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, movie VARCHAR(255) NOT NULL);");
         q.clear();
+        q.exec("CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT, moviename VARCHAR(255) UNIQUE NOT NULL);");
+        q.clear();
         db.close();
     }
 }
@@ -108,4 +110,20 @@ void dbutil::DeleteReserve(User user, QString moviename) {
 }
 
 
-
+bool dbutil::AddMovie(QString moviename) {
+    db.open();
+    QSqlQuery q;
+    q.prepare("INSERT INTO movies (moviename) VALUES (?);");
+    q.addBindValue(moviename);
+    q.exec();
+    QSqlError err = q.lastError();
+    if (err.isValid()) {
+        q.clear();
+        db.close();
+        return false;
+    } else {
+        q.clear();
+        db.close();
+        return true;
+    }
+}

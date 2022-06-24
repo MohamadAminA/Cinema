@@ -16,6 +16,7 @@ public:
     bool AddReserve(User, QString);
     QList<QString> *GetReserveList(User);
     void DeleteReserve(User, QString);
+    bool AddMovie(QString);
 };
 
 #endif // DBUTIL_H

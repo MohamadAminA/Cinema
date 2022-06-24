@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     admin.cpp \
     admin_login.cpp \
     add_movie.cpp \
-    movie_list.cpp
+    movie_list.cpp \
+    register.cpp
 
 HEADERS  += mainwindow.h \
     Models.h \
@@ -38,13 +39,15 @@ HEADERS  += mainwindow.h \
     admin.h \
     admin_login.h \
     add_movie.h \
-    movie_list.h
+    movie_list.h \
+    register.h
 
 FORMS    += mainwindow.ui \
     admin.ui \
     admin_login.ui \
     add_movie.ui \
-    movie_list.ui
+    movie_list.ui \
+    register.ui
 
 RESOURCES += \
     resourse.qrc
