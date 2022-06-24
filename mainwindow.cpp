@@ -20,6 +20,10 @@ void MainWindow::on_loginBtn_clicked()
 {
     QString user = ui->username->text();
     QString pass = ui->password->text();
+    if (user.isEmpty() || pass.isEmpty()) {
+        QMessageBox::warning(this, "login", "fields can not be empty.");
+        return;`
+    }
     User userobj{user, pass};
     bool res = db->ValidateUser(userobj);
     if (res) {
