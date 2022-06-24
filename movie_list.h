@@ -29,7 +29,7 @@ public:
 		QString BookedTickets;
 	};
 	bool cell_check = false;
-	explicit movie_list(QWidget *parent = 0);
+	explicit movie_list(QWidget *parent = 0, dbutil *db = nullptr);
 	~movie_list();
 
 protected:

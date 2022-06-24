@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "QString"
 #include "Admin_Menu.h"
+#include "Models.h"
+#include "dbutil.h"
 namespace Ui {
 class add_movie;
 }
@@ -13,20 +15,7 @@ class add_movie : public QMainWindow
 	Q_OBJECT
 
 public:
-	class Movie{
-	public:
-		QString Name ;
-		QString Director;
-		QString Movie_Cast;
-		QString IMDB;
-		QString Tickets;
-		QString Release_date;
-		QString Genre;
-		QString Time;
-		QString BookedTickets;
-	};
-
-	explicit add_movie(QWidget *parent = 0);
+	explicit add_movie(QWidget *parent = 0, dbutil *db = nullptr);
 	~add_movie();
 protected:
 	void resizeEvent(QResizeEvent* evt) override;
@@ -42,7 +31,9 @@ private slots:
 	void on_actionAddMovie_triggered();
 
 private:
+
 	Ui::add_movie *ui;
+	dbutil* db;
 };
 
 #endif // ADD_MOVIE_H

@@ -3,7 +3,7 @@
 #include "QDir"
 movie_list::Movie movies[50];
 
-movie_list::movie_list(QWidget *parent) :
+movie_list::movie_list(QWidget *parent, dbutil *db ) :
 	QMainWindow(parent),
 	ui(new Ui::movie_list)
 {

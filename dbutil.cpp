@@ -131,29 +131,30 @@ void dbutil::DeleteReserve(User user, QString moviename) {
 }
 
 bool dbutil::AddMovie(Movie movie) {
-    db.open();
-    QSqlQuery q;
-    q.prepare("INSERT INTO movies (name, tickets, bookedTickets, time, genre, releaseDate, director, moviecast, imdb) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
-    q.addBindValue(movie.name);
-    q.addBindValue(movie.tickets);
-    q.addBindValue(movie.bookedTickets);
-    q.addBindValue(movie.time);
-    q.addBindValue(movie.genre);
-    q.addBindValue(movie.releaseDate);
-    q.addBindValue(movie.director);
-    q.addBindValue(movie.moviecast);
-    q.addBindValue(movie.imdb);
-    q.exec();
-    QSqlError err = q.lastError();
-    if (err.isValid()) {
-        q.clear();
-        db.close();
-        return false;
-    } else {
-        q.clear();
-        db.close();
-        return true;
-    }
+	db.open();
+//	QSqlQuery q;
+//	q.prepare("INSERT INTO movies (name, tickets, bookedTickets, time, genre, releaseDate, director, moviecast, imdb) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+//    q.addBindValue(movie.name);
+//    q.addBindValue(movie.tickets);
+//    q.addBindValue(movie.bookedTickets);
+//    q.addBindValue(movie.time);
+//    q.addBindValue(movie.genre);
+//    q.addBindValue(movie.releaseDate);
+//    q.addBindValue(movie.director);
+//    q.addBindValue(movie.moviecast);
+//    q.addBindValue(movie.imdb);
+//    q.exec();
+//    QSqlError err = q.lastError();
+//    if (err.isValid()) {
+//        q.clear();
+//        db.close();
+//        return false;
+//    } else {
+//        q.clear();
+//        db.close();
+//        return true;
+//    }
+//	return false;
 }
 
 QList<Movie> *dbutil::GetMovies() {

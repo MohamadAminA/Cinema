@@ -5,13 +5,14 @@
 #include "iostream"
 #include "QFile"
 #include "QTextStream"
+#include "Models.h"
 using namespace std;
-add_movie::add_movie(QWidget *parent) :
+add_movie::add_movie(QWidget *parent, dbutil *db) :
 	QMainWindow(parent),
 	ui(new Ui::add_movie)
 {
 	ui->setupUi(this);
-
+	this->db = db;
 	QWidget::showMaximized();
 	this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QSize* size = new QSize(100,100);
@@ -24,7 +25,7 @@ add_movie::~add_movie()
 {
 	delete ui;
 }
-//MovieName*Tickets*Booked Tickets*Time*Genre*Release Date*Director*Movie Cast*IMDB| فیلم بعدی
+
 void add_movie::on_pushButton_clicked()
 {
 	if(ui->lineEdit_Director->text().isEmpty()||ui->lineEdit_Genre->text().isEmpty()||ui->lineEdit_Movie_Cast->text().isEmpty()||ui->lineEdit_movie_name->text().isEmpty())
@@ -32,46 +33,14 @@ void add_movie::on_pushButton_clicked()
 		QMessageBox::warning(this , "Warning","Please Fill All Boxes !");
 		return;
 	}
+	Movie* Film = new Movie(ui->lineEdit_movie_name->text(),ui->spinBox_Tickets->text().toInt(),0,ui->timeEdit->text(),ui->lineEdit_Genre->text(),ui->spinBox_ReleaseDate->text(),ui->lineEdit_Director->text(),ui->lineEdit_Movie_Cast->text(),ui->doubleSpinBox_IMDB->text().toDouble());
 
-	Movie Film;
-	Film.Name = ui->lineEdit_movie_name->text();
-	Film.Tickets = ui->spinBox_Tickets->text() ;
-	Film.Genre = ui->lineEdit_Genre->text();
-	Film.Release_date = ui->spinBox_ReleaseDate->text();
-	Film.Director = ui->lineEdit_Director->text();
-	Film.Movie_Cast = ui->lineEdit_Movie_Cast->text();
-	Film.IMDB = ui->doubleSpinBox_IMDB->text();
-	Film.Time = ui->timeEdit->text();
-	Film.BookedTickets = "0";
-	QFile file("./Movie.txt");
-	if (file.open(QFile::Append|QFile::Text))
-	{
-		QTextStream stream(&file);
-		stream << Film.Name << "*"
-			   <<Film.Tickets  << "*"
-			   <<Film.BookedTickets  << "*"
-			   <<Film.Time<< "*"
-			   << Film.Genre <<"*"
-			   << Film.Release_date <<"*"
-			   << Film.Director <<"*"
-			   << Film.Movie_Cast  <<"*"
-			   << Film.IMDB  << "|"; // this writes All informations About film in "Movie.txt" File
-		file.close();
-
-		ui->doubleSpinBox_IMDB->setValue(0.0);
-		ui->spinBox_ReleaseDate->setValue(2022);
-		ui->spinBox_Tickets->setValue(0);
-		QTime* Time_tmp = new QTime(00,00,00);
-		ui->timeEdit->setTime(*Time_tmp);
-		ui->lineEdit_Director->setText("");
-		ui->lineEdit_Genre->setText("");
-		ui->lineEdit_Movie_Cast->setText("");
-		ui->lineEdit_movie_name->setText("");
-
+	if(db->AddMovie(*Film)){
+		add_movie::on_actionReset_triggered();
 		QMessageBox::information(this , "Add Movie","Movie successfully Added !");
 	}
 	else{
-		QMessageBox::warning(this , "Warning","File Movie didn't Open !");
+		QMessageBox::warning(this , "Warning","couldn't add movie !");
 		return ;
 	}
 }

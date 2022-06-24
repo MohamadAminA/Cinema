@@ -1,12 +1,14 @@
 #include "Admin_Menu.h"
 #include "ui_admin.h"
 
-Admin::Admin(QWidget *parent) :
+Admin::Admin(QWidget *parent, dbutil *db) :
 	QMainWindow(parent),
 	ui(new Ui::Admin)
 {
 	ui->setupUi(this);
 
+	ui->pushButton_Users->hide();
+	this->db = db;
 	this->QWidget::showMaximized();
 	this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 	QSize* size = new QSize(100,100);
@@ -50,14 +52,14 @@ void Admin::on_actionExit_triggered()
 
 void Admin::on_pushButton_Addmovie_clicked()
 {
-	add_movie* add_Movie = new add_movie(this);
+	add_movie* add_Movie = new add_movie(this,db);
 	add_Movie->show();
 	this->hide();
 }
 
 void Admin::on_pushButton_MovieList_clicked()
 {
-	movie_list* Movie_List = new movie_list(this);
+	movie_list* Movie_List = new movie_list(this,db);
 	Movie_List->show();
 	this->hide();
 }
