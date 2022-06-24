@@ -11,4 +11,22 @@ public:
     QString password;
 };
 
+class Movie {
+public:
+    int id;
+    QString name;
+    int tickets;
+    int bookedTickets;
+    QString time;
+    QString genre;
+    QString releaseDate;
+    QString director;
+    QString moviecast;
+    double imdb;
+    Movie(int id, QString name, int tickets, int bookedTickets, QString time, QString genre,
+          QString releaseDate, QString director, QString moviecast, double imdb) : id{id}, name{name}, tickets{tickets}
+      , bookedTickets{bookedTickets}, time{time}, genre{genre}, releaseDate{releaseDate}, director{director},
+        moviecast{moviecast}, imdb{imdb} {  }
+};
+
 #endif // MODELS_H

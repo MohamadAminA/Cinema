@@ -16,7 +16,7 @@ dbutil::dbutil()
         q.clear();
         q.exec("CREATE TABLE reserves (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, movie VARCHAR(255) NOT NULL);");
         q.clear();
-        q.exec("CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT, moviename VARCHAR(255) UNIQUE NOT NULL);");
+        q.exec("CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255) UNIQUE NOT NULL, tickets INTEGER, bookedTickets INTEGER, time TEXT, genre VARCHAR(255), releaseDate TEXT, director VARCHAR(255), moviecast TEXT, imdb REAL);");
         q.clear();
         db.close();
     }
@@ -110,11 +110,19 @@ void dbutil::DeleteReserve(User user, QString moviename) {
 }
 
 
-bool dbutil::AddMovie(QString moviename) {
+bool dbutil::AddMovie(Movie movie) {
     db.open();
     QSqlQuery q;
-    q.prepare("INSERT INTO movies (moviename) VALUES (?);");
-    q.addBindValue(moviename);
+    q.prepare("INSERT INTO movies (name, tickets, bookedTickets, time, genre, releaseDate, director, moviecast, imdb) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+    q.addBindValue(movie.name);
+    q.addBindValue(movie.tickets);
+    q.addBindValue(movie.bookedTickets);
+    q.addBindValue(movie.time);
+    q.addBindValue(movie.genre);
+    q.addBindValue(movie.releaseDate);
+    q.addBindValue(movie.director);
+    q.addBindValue(movie.moviecast);
+    q.addBindValue(movie.imdb);
     q.exec();
     QSqlError err = q.lastError();
     if (err.isValid()) {
@@ -127,3 +135,27 @@ bool dbutil::AddMovie(QString moviename) {
         return true;
     }
 }
+
+
+QList<Movie> *dbutil::GetMovies() {
+    db.open();
+    QSqlQuery q;
+    q.prepare("SELECT * FROM movies;");
+    q.exec();
+    QList<Movie> *list = new QList<Movie>();
+    while (q.next()) {
+        Movie mov{q.value(0).toInt(),
+                 q.value(1).toString(),
+                 q.value(2).toInt(),
+                 q.value(3).toInt(),
+                 q.value(4).toString(),
+                 q.value(5).toString(),
+                 q.value(6).toString(),
+                 q.value(7).toString(),
+                 q.value(8).toString(),
+                 q.value(9).toDouble()};
+        list->append(mov);
+    }
+    return list;
+}
+
