@@ -18,6 +18,8 @@ public:
     void DeleteReserve(User, QString);
     bool AddMovie(Movie);
     QList<Movie> *GetMovies();
+    bool ValidateAdmin(User);
+    bool RemoveMovie(QString);
 };
 
 #endif // DBUTIL_H

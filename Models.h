@@ -23,8 +23,8 @@ public:
     QString director;
     QString moviecast;
     double imdb;
-    Movie(int id, QString name, int tickets, int bookedTickets, QString time, QString genre,
-          QString releaseDate, QString director, QString moviecast, double imdb) : id{id}, name{name}, tickets{tickets}
+    Movie(QString name, int tickets, int bookedTickets, QString time, QString genre,
+          QString releaseDate, QString director, QString moviecast, double imdb) : name{name}, tickets{tickets}
       , bookedTickets{bookedTickets}, time{time}, genre{genre}, releaseDate{releaseDate}, director{director},
         moviecast{moviecast}, imdb{imdb} {  }
 };

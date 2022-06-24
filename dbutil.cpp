@@ -12,7 +12,9 @@ dbutil::dbutil()
     if (!QFile::exists(path)) {
         db.open();
         QSqlQuery q;
-        q.exec("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255));");
+        q.exec("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL);");
+        q.clear();
+        q.exec("CREATE TABLE admins (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL);");
         q.clear();
         q.exec("CREATE TABLE reserves (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, movie VARCHAR(255) NOT NULL);");
         q.clear();
@@ -109,7 +111,6 @@ void dbutil::DeleteReserve(User user, QString moviename) {
     db.close();
 }
 
-
 bool dbutil::AddMovie(Movie movie) {
     db.open();
     QSqlQuery q;
@@ -136,7 +137,6 @@ bool dbutil::AddMovie(Movie movie) {
     }
 }
 
-
 QList<Movie> *dbutil::GetMovies() {
     db.open();
     QSqlQuery q;
@@ -144,8 +144,7 @@ QList<Movie> *dbutil::GetMovies() {
     q.exec();
     QList<Movie> *list = new QList<Movie>();
     while (q.next()) {
-        Movie mov{q.value(0).toInt(),
-                 q.value(1).toString(),
+        Movie mov{q.value(1).toString(),
                  q.value(2).toInt(),
                  q.value(3).toInt(),
                  q.value(4).toString(),
@@ -158,4 +157,37 @@ QList<Movie> *dbutil::GetMovies() {
     }
     return list;
 }
+
+bool dbutil::ValidateAdmin(User admin) {
+    if (!admin.username.compare("admin") && !admin.password.compare("123456")) return true;
+    db.open();
+    QSqlQuery q;
+    q.prepare("SELECT * FROM admins WHERE username=?;");
+    q.addBindValue(admin.username);
+    q.exec();
+    bool exists = q.next();
+    if (exists) {
+        QString pass = q.value(2).toString();
+        bool verify = !pass.compare(admin.password);
+        q.clear();
+        db.close();
+        return verify;
+    }
+    q.clear();
+    db.close();
+    return exists;
+}
+
+bool dbutil::RemoveMovie(QString moviename) {
+    db.open();
+    QSqlQuery q;
+    q.prepare("DELETE FROM movies WHERE name=?;");
+    q.addBindValue(moviename);
+    q.exec();
+    q.clear();
+    db.close();
+    return true;
+}
+
+
 
